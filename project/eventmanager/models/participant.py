@@ -8,6 +8,6 @@ class Participant(models.Model):
     organisation_name = models.CharField(max_length=100, blank=True)
     position = models.CharField(max_length = 100, blank=True)
     email = models.EmailField(max_length=250, blank=True)
-    phone_number = models.CharField(max_lengt=15, blank=True)
+    phone_number = models.CharField(max_length=15, blank=True)
     comment = models.TextField(blank=True)
 
