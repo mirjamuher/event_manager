@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- CSS & Extra CSS -->
+        <link rel="stylesheet" href="/static/css/normalize.css">
+        <link rel="stylesheet" href="/static/css/common.css">
+        {% block extra_css %}{% endblock %}
+
+        <!-- Pagetitle -->
+        <title>{% block page_title %}Mirjam's Eventmanager{% endblock %}</title>
+
+        <!-- Stylesheets here -->
+    </head>
+
+    <body>
+        {% block content %}{% endblock %}
+    </body>
+</html>
