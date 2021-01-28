@@ -1,10 +1,12 @@
 {% extends "eventmanager/base.html" %}
+{% load static %} {# THIS NEEDS TO BE IN EVERY HTML FILE (that uses the static command)#}
 
 {% block content %}
     <h1>This is the landing page for Miri's eventmanager</h1>
 
-    <button class='btn', id='create_btn'>Create New Event</button>
-    <button class='btn',id='manage_btn'>Manage Existing Event</button>
+    <button class='btn' id='createBtn' data-url="{% url 'eventmanager:create_event' %}">Create New Event</button>
+    <button class='btn' id='manageBtn'>Manage Existing Event</button>
 
     <!-- JavaScript -->
+    <script src="{% static 'eventmanager/js/landing_page.js' %}"></script>
 {% endblock %}
