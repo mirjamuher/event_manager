@@ -3,6 +3,13 @@
 {% block content %}
     <h1>Create A New Event</h1>
 
+    <form action="{% url 'eventmanager:create_event' %}" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Submit">
+    </form>
+
+<!--
     <form method="post" enctype="multipart/form-data">
         <label>
             <span class="txt">
@@ -23,6 +30,7 @@
             <input class="btn" type="submit" value="Enter Event into Database">
           </label>
     </form>
-    
+-->
+
     <!-- JavaScript -->
 {% endblock %}

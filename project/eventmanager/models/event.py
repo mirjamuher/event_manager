@@ -1,7 +1,14 @@
 from django.db import models
+from django.db.models.constraints import UniqueConstraint
+
 
 # Create your models here.
 
 class Event(models.Model):
     name = models.CharField(max_length=100)
-    date = models.DateField()    
+    date = models.DateField()
+
+    class Meta:
+        constraints = [
+            UniqueConstraint(fields=['name', 'date'], name='unique_event'), 
+        ]
