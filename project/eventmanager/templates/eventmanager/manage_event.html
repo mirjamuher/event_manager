@@ -2,14 +2,56 @@
 
 {% block content %}
 
-<h1>Managing Event {{ event.name }} on {{ event.date }}</h1>
+<h1>Managing Event "{{ event.name }}" on {{ event.date }}</h1>
 
+<!-- Upload Participant List -->
 <form action="{% url 'eventmanager:manage_event' event.id %}" method="post" enctype="multipart/form-data">
+    <label>
+        <p>Upload the participant list as a .csv here.</p>
+        <p>Columns: organisation, first_name, last_name, position, email (must exist), phone_number, comment</p>
+    </label>
     {% csrf_token %}
     {{ form }}
     <input type="submit" value="Submit">
 </form>
 
+<br>
+<br>
+
+<!-- Show Current Participant List -->
+{% if registration_list %}
+<h3>List of registered participants for this event</h3>
+    <table>
+        <tr>
+            <th>organisation</th>
+            <th>first_name</th>
+            <th>last_name</th>
+            <th>position</th>
+            <th>email</th>
+            <th>phone_number</th>
+            <th>comment</th>
+            <th>created_at</th>
+            <th>checked in?</th>
+            <th>edit</th>
+        </tr>
+        {% for rego in registration_list %}
+            <tr>
+                <td>{{ rego.participant.organisation }}</td>
+                <td>{{ rego.participant.first_name }}</td>
+                <td>{{ rego.participant.last_name }}</td>
+                <td>{{ rego.participant.position }}</td>
+                <td>{{ rego.participant.email }}</td>
+                <td>{{ rego.participant.phone_number }}</td>
+                <td>{{ rego.participant.comment }}</td>
+                <td>{{ rego.created_at }}</td>
+                <td>{{ rego.checked_in_at }}</td>
+                <td><a href="{% url 'eventmanager:edit_participant' rego.participant.id %}">Edit</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    <p>No participants yet registered for this event.</p>
+{% endif %}
 
 <!-- JavaScript -->
 {% endblock %}
