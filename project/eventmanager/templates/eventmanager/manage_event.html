@@ -1,0 +1,15 @@
+{% extends "eventmanager/base.html" %}
+
+{% block content %}
+
+<h1>Managing Event {{ event.name }} on {{ event.date }}</h1>
+
+<form action="{% url 'eventmanager:manage_event' event.id %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit">
+</form>
+
+
+<!-- JavaScript -->
+{% endblock %}
