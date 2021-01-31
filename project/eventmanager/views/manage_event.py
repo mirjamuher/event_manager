@@ -62,7 +62,7 @@ def manage_event(request, event_id):
     else:
         form = UploadFileForm()
 
-    registration_queary = Registration.objects.filter(event=event_id) # returns registration list
+    registration_queary = Registration.objects.filter(event=event_id)  # returns registration list
 
     context = {
         'event': event, 

@@ -6,6 +6,8 @@ from django.forms import ModelForm
 from eventmanager.models import Event, Participant, Registration
 from datetime import datetime
 
+# The ORM
+
 def registration(event, participant):
     try:
         rego = Registration.objects.filter(participant=participant, event=event).get()
@@ -20,6 +22,22 @@ def registration(event, participant):
     except Registration.DoesNotExist:
         return "Error: Participant is not registered for this event"
 
+def cancel_checked_in_at(event, participant):
+    try:
+        rego = Registration.objects.filter(participant=participant, event=event).get()
+        if not rego.checked_in_at:
+            return "Alert: Participant is not checked in"
+        else:
+            rego.checked_in_at = None
+            rego.full_clean()
+            rego.save()
+            return "Success: Participant's checkin was cancelled"
+    except Registration.DoesNotExist:
+        # Participant is not registered for this event
+        return "Error"
+
+# The Views 
+
 def checkin(request, event_id, participant_id):
     event = get_object_or_404(Event, pk=event_id)
     participant = get_object_or_404(Participant, pk=participant_id)
@@ -32,3 +50,16 @@ def checkin(request, event_id, participant_id):
         'msg': msg
     }
     return render(request, 'eventmanager/checkin.html', context)
+
+
+def cancel_checkin(request, event_id, participant_id):
+    event = get_object_or_404(Event, pk=event_id)
+    participant = get_object_or_404(Participant, pk=participant_id)
+
+    msg = cancel_checked_in_at(event, participant)
+
+    if msg == "Error":
+        output = "Participant is not registered for this event. Something went wrong"
+        return HttpResponse(output)
+    else:
+        return HttpResponseRedirect(reverse('eventmanager:manage_event', args=[event_id]))
