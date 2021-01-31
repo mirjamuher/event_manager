@@ -31,7 +31,8 @@
             <th>phone_number</th>
             <th>comment</th>
             <th>created_at</th>
-            <th>checked in?</th>
+            <th>is checked in?</th>
+            <th>check in</th>
             <th>edit</th>
         </tr>
         {% for rego in registration_list %}
@@ -45,6 +46,7 @@
                 <td>{{ rego.participant.comment }}</td>
                 <td>{{ rego.created_at }}</td>
                 <td>{{ rego.checked_in_at }}</td>
+                <td><a href="{% url 'eventmanager:checkin' event.id rego.participant.id%}">Checkin</a></td>
                 <td><a href="{% url 'eventmanager:edit_participant' rego.participant.id %}">Edit</a></td>
             </tr>
         {% endfor %}

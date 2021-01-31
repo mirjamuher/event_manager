@@ -1,0 +1,9 @@
+{% extends "eventmanager/base.html" %}
+
+{% block content %}
+    <h1>
+        {{ msg }}
+    </h1>
+    <a href="{% url 'eventmanager:manage_event' event.id %}">Back to manage event</a>
+    <!-- JavaScript -->
+{% endblock %}
