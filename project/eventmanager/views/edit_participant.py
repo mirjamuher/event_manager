@@ -7,7 +7,9 @@ from django.forms import ModelForm
 from eventmanager.models import Event, Participant, Registration
 import csv
 import io
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def edit_participant(request, participant_id):
     response = f"You are managing participant no {participant_id}"
     return HttpResponse(response)

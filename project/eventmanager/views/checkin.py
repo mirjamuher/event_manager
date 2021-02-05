@@ -5,6 +5,7 @@ from django.urls import reverse
 from django.forms import ModelForm
 from eventmanager.models import Event, Participant, Registration
 from datetime import datetime
+from django.contrib.auth.decorators import login_required
 
 # The ORM
 
@@ -38,6 +39,7 @@ def cancel_checked_in_at(event, participant):
 
 # The Views 
 
+@login_required
 def checkin(request, event_id, participant_id):
     event = get_object_or_404(Event, pk=event_id)
     participant = get_object_or_404(Participant, pk=participant_id)
@@ -52,6 +54,7 @@ def checkin(request, event_id, participant_id):
     return render(request, 'eventmanager/checkin.html', context)
 
 
+@login_required
 def cancel_checkin(request, event_id, participant_id):
     event = get_object_or_404(Event, pk=event_id)
     participant = get_object_or_404(Participant, pk=participant_id)

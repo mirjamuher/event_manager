@@ -7,7 +7,9 @@ from django.forms import ModelForm
 from eventmanager.models import Event, Participant, Registration
 import csv
 import io
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def landing_page(request):
     context = {}
     return render(request, 'eventmanager/landing_page.html', context)

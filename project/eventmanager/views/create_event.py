@@ -7,7 +7,9 @@ from django.forms import ModelForm
 from eventmanager.models import Event, Participant, Registration
 import csv
 import io
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def create_event(request):
     class EventForm(ModelForm):
         class Meta:

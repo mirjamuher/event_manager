@@ -7,6 +7,7 @@ from django.forms import ModelForm
 from eventmanager.models import Event, Participant, Registration
 import csv
 import io
+from django.contrib.auth.decorators import login_required
 
 # TODO: Create QR code list for download 
 
@@ -48,6 +49,7 @@ def get_or_create_registration(participant, event):
 
 # ACTUAL SITE VIEW
 
+@login_required
 def manage_event(request, event_id):
     event = get_object_or_404(Event, pk=event_id)
     class UploadFileForm(forms.Form):
