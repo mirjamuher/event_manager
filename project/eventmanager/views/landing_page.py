@@ -9,7 +9,13 @@ import csv
 import io
 from django.contrib.auth.decorators import login_required
 
-@login_required
+
 def landing_page(request):
     context = {}
     return render(request, 'eventmanager/landing_page.html', context)
+
+
+@login_required
+def dashboard(request):
+    context = {}
+    return render(request, 'eventmanager/dashboard.html', context)
