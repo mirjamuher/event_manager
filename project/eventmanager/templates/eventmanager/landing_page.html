@@ -2,8 +2,9 @@
 {% load static %} {# THIS NEEDS TO BE IN EVERY HTML FILE (that uses the static command)#}
 
 {% block content %}
-    <h1>This is the landing page for Miri's eventmanager</h1>
-    <a href="{% url 'eventmanager:dashboard' %}">Log In</a>
-
+    <div class="text-center">
+        <h1 class="mb-4">Welcome to Miri's Eventmanager</h1>
+        <a class="btn btn-warning" href="{% url 'eventmanager:dashboard' %}">Go to dashboard</a>
+    </div>
     <!-- JavaScript -->
 {% endblock %}
