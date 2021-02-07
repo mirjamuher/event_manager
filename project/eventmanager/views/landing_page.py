@@ -17,5 +17,8 @@ def landing_page(request):
 
 @login_required
 def dashboard(request):
-    context = {}
+    latest_event_list = Event.objects.order_by('-date')[:10]
+    context = {
+        'latest_event_list': latest_event_list,
+    }
     return render(request, 'eventmanager/dashboard.html', context)

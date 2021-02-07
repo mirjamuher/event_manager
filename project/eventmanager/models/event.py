@@ -12,3 +12,6 @@ class Event(models.Model):
         constraints = [
             UniqueConstraint(fields=['name', 'date'], name='unique_event'), 
         ]
+    
+    def __str__(self):
+        return f"{self.name} on {self.date}"

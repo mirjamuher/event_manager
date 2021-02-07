@@ -1,13 +1,18 @@
 {% extends "eventmanager/base.html" %}
 
-{% block content %}
-    <h1>Create A New Event</h1>
+<!-- Imports Cripsy for Form Styling -->
+{% load crispy_forms_tags %}
 
+{% block content %}
+    <h1 class="text-center mb-4">Create a new event</h1>
+
+    <div class="text-center col-12 col-md-6 offset-md-3">
     <form action="{% url 'eventmanager:create_event' %}" method="post">
         {% csrf_token %}
-        {{ form }}
-        <input type="submit" value="Submit">
+        {{ form|crispy }}
+        <input class="btn btn-warning" type="submit" value="Submit">
     </form>
+    </div>
 
     <!-- JavaScript -->
 {% endblock %}

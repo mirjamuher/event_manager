@@ -15,6 +15,10 @@ def create_event(request):
         class Meta:
             model = Event
             fields = ['name', 'date']
+            widgets = {
+                'name': forms.TextInput(attrs={'placeholder': 'Event Name'}),
+                'date': forms.DateInput(attrs={'type': 'date'}),
+            }
 
     # If the form was sent:
     if request.method == 'POST':

@@ -1,0 +1,15 @@
+{% extends "eventmanager/base.html" %}
+
+{% block content %}
+    <div class="text-center">
+        <h1 class="mb-4">All Events by AC Sydney:</h1>
+    </div>
+    <div>
+        <ul class="list-group col-12 col-md-4 offset-md-4 text-center">
+            {% for event in event_list %}
+                <a class="list-group-item list-group-item-action list-group-item-dark" href="{% url 'eventmanager:manage_event' event.id %}">{{ event }}</a>
+            {% endfor %}
+        </ul>
+    </div>
+    <!-- JavaScript -->
+{% endblock %}

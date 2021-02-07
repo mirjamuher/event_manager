@@ -6,13 +6,31 @@
         <h1 class="cover-heading">Welcome to Miri's Eventmanager!</h1>
 
         <h4 class="lead">Choose one of the options below:</h4>
-        
+
         <div class="row lead my-4">
             <div class="col-12 col-md-3 offset-md-3">
                 <a class="btn btn-lg btn-info btn-block" role="button" href="{% url 'eventmanager:create_event' %}">Create New Event</a> <br>
             </div>
             <div class="col-12 col-md-3">
-                <a class="btn btn-lg btn-warning btn-block" role="button" href="">Manage Existing Events</a>
+                <button class="btn btn-lg btn-warning btn-block" type="button" data-toggle="collapse" data-target="#previousEvents" aria-expanded="false" aria-controls="previousEvents">
+                    Manage Existing Events
+                </button>
+            </div>
+        </div>
+
+        <main role="main" class="collapse inner cover text-center" id="previousEvents">
+            <div>
+                <h4>Choose an existing event:</h4>
+            </div>
+            <div>
+                <ul class="list-group col-12 col-md-6 offset-md-3">
+                {% for event in latest_event_list %}
+                    <a class="list-group-item list-group-item-action" href="{% url 'eventmanager:manage_event' event.id %}">{{ event }}</a>
+                {% endfor %}
+                </ul>
+            </div>
+            <div>
+                <a href="{% url 'eventmanager:list_all_events' %}" id="allEvents">see all events</a>
             </div>
         </div>
     </main>
