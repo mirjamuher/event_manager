@@ -3,3 +3,4 @@ qrcode[pil]
 psycopg2-binary
 django-crispy-forms
 gunicorn
+django-heroku
