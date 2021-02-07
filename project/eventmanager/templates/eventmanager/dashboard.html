@@ -19,20 +19,37 @@
         </div>
 
         <main role="main" class="collapse inner cover text-center" id="previousEvents">
-            <div>
+            <div class="mb-4">
                 <h4>Choose an existing event:</h4>
             </div>
-            <div>
-                <ul class="list-group col-12 col-md-6 offset-md-3">
-                {% for event in latest_event_list %}
-                    <a class="list-group-item list-group-item-action" href="{% url 'eventmanager:manage_event' event.id %}">{{ event }}</a>
-                {% endfor %}
-                </ul>
+
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover col-12 col-md-6 offset-md-3">
+                    <thead class="thead-light">
+                        <th scope="col">Event name</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Registrations</th>
+                        <th scope="col">Go to event</th>
+                    </thead>
+                    <tbody>
+                        {% for event in latest_event_list %}
+                        <tr scope="row">
+                            <td>{{ event.name }}</td>
+                            <td>{{ event.date }}</td>
+                            <td>{{ event.count_registrations }}</td>
+                            <td>
+                                <a class="btn btn-sm btn-outline-dark" href="{% url 'eventmanager:manage_event' event.id %}">Manage</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
+
             <div>
                 <a href="{% url 'eventmanager:list_all_events' %}" id="allEvents">see all events</a>
             </div>
-        </div>
+        </main>
     </main>
 
     <!-- JavaScript -->

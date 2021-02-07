@@ -5,13 +5,15 @@
 
 {% block content %}
 
-<h1>Managing Event "{{ event.name }}" on {{ event.date }}</h1>
+<h1 class="text-center">Managing Event "{{ event.name }}" on {{ event.date }}</h1>
 
-<button class="btn btn-warning my-3" type="button" data-toggle="collapse" data-target="#uploadParticipants" aria-expanded="false" aria-controls="collapseExample">
-    Upload List of Participants
-</button>
-<!-- Upload Participant List -->
-<div id="uploadParticipants" class="collapse card card-body">
+<div class="text-center">
+    <button class="btn btn-warning my-3" type="button" data-toggle="collapse" data-target="#uploadParticipants" aria-expanded="false" aria-controls="collapseExample">
+        Upload List of Participants
+    </button>
+</div>
+    <!-- Upload Participant List -->
+<div id="uploadParticipants" class="collapse card card-body bg-secondary text-white py-4">
     <form class="mb-3" action="{% url 'eventmanager:manage_event' event.id %}" method="post" enctype="multipart/form-data">
         <p>Upload the participant list as a .csv here.</p>
         {{ form|crispy }}
@@ -25,10 +27,13 @@
 
 <!-- Show Current Participant List -->
 {% if registration_list %}
-<h3 class="py-3">List of registered participants for this event</h3>
+<h3 class="py-3 text-center">List of registered participants for this event</h3>
+<div class="py-3 text-center">
+    <p>Checked-in: {{ event.count_participants }}</p>
+</div>
     <div class="table-responsive">
         <table class="table table-bordered table-striped table-hover">
-            <thead class="table-warning">
+            <thead class="table-secondary">
                 <tr>
                     <th scope="col">organisation</th>
                     <th scope="col">first_name</th>
@@ -44,7 +49,7 @@
                 </tr>
             </thead>
             {% for rego in registration_list %}
-                <tr scope="row">
+                <tr scope="row" {% if rego.checked_in_at %} class="table-success" {% else %} class="table-light" {% endif %}>
                     <td>{{ rego.participant.organisation }}</td>
                     <td>{{ rego.participant.first_name }}</td>
                     <td>{{ rego.participant.last_name }}</td>
@@ -67,7 +72,7 @@
         </table>
     </div>
 {% else %}
-    <p>No participants yet registered for this event.</p>
+    <p class="text-center my-4">No participants yet registered for this event.</p>
 {% endif %}
 
 <!-- JavaScript -->
