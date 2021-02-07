@@ -134,3 +134,10 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # Crispy Form
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+if os.environ.get('ON_HEROKU'):
+    import django_heroku
+    django_heroku.settings(locals())
+
+    DEBUG = False
+    SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
