@@ -18,6 +18,7 @@ def handle_participant_csv_upload(event, djangoStyleFile):
     reader = csv.DictReader(file)
     for row in reader:
         # TODO: VALIDATE ROW INFO
+        row = {k: v.strip() for k, v in row.items()}
         participant = get_or_create_participant(row)
         get_or_create_registration(participant, event)
         print(row)

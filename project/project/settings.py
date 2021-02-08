@@ -140,4 +140,5 @@ if os.environ.get('ON_HEROKU'):
     django_heroku.settings(locals())
 
     DEBUG = False
+    SECURE_SSL_REDIRECT = True
     SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
