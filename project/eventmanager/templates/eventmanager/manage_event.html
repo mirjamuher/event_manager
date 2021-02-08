@@ -49,7 +49,7 @@
                 </tr>
             </thead>
             {% for rego in registration_list %}
-                <tr scope="row" {% if rego.checked_in_at %} class="table-success" {% else %} class="table-light" {% endif %}>
+                <tr scope="row" {% if rego.checked_in_at %} class="table-success" {% endif %}>
                     <td>{{ rego.participant.organisation }}</td>
                     <td>{{ rego.participant.first_name }}</td>
                     <td>{{ rego.participant.last_name }}</td>
