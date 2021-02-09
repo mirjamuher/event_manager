@@ -25,6 +25,7 @@ def handle_participant_csv_upload(event, djangoStyleFile):
 
 def get_or_create_participant(data:dict):
     email = data['email'].lower()
+    data['email'] = email
     try: 
         p = Participant.objects.filter(email=email).get()
         # TODO: How do I update fields of P that haven't been filled before
