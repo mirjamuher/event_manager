@@ -7,6 +7,40 @@
 
 <h1 class="text-center">Managing Event "{{ event.name }}" on {{ event.date }}</h1>
 
+{% if has_been_uploaded %}
+<div class="py-3">
+    {% if error_msg %}
+        {% if error_msg|length > 1 %}
+            <div class="alert alert-danger" role="alert">
+                <h4>The following errors occured:</h4>
+                <ul>
+                    {% for entry in error_msg %}
+                        <li>{{ entry }}</li>
+                    {% endfor %}
+                </ul>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% else %}
+            <div class="alert alert-danger" role="alert">
+                {{ error_msg }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endif %}
+    {% else %}
+        <div class="alert alert-success" role="alert">
+            Your file has been successfully uploaded
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endif %}
+</div>
+{% endif %}
+
 <div class="text-center">
     <button class="btn btn-warning my-3" type="button" data-toggle="collapse" data-target="#uploadParticipants" aria-expanded="false" aria-controls="collapseExample">
         Upload List of Participants
