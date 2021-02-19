@@ -65,8 +65,6 @@ def is_fieldname_missing(cleaned_row):
     return missing
 
 def get_or_create_participant(data:dict):
-    # TODO: save participants with issues
-    # TODO: fist_name, last_name or email missing OR invalid info in field
     email = data['email']
     first_name = data['first_name']
     last_name = data['last_name']
